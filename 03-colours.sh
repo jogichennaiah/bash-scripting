@@ -1,1 +1,1 @@
-echo  -e "Cloud\tDevops\tare\tBooming
+echo  -e "Cloud\t Devops\tare\t Booming
