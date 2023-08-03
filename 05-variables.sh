@@ -2,4 +2,4 @@
  b=50
 d=60
 
-echo ${a}
+echo  " print the value of : ${a}"
