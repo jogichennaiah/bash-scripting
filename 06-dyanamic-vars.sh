@@ -1,2 +1,2 @@
 DATE="$(date +%F)"
-echo "Today date is $DATE"
+echo -e "Today date is \e[32m $DATE \e[0m"
