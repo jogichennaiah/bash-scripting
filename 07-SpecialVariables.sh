@@ -1,3 +1,3 @@
 #!/bin/bash
-ROCKET-NAME=chandrayan
+ROCKET_NAME=chandrayan
 echo "Name of recently launched rocket in india is $ROCKET_NAME"
