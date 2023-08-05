@@ -5,3 +5,9 @@ stat(){
 
 }
 stat
+sleep 1
+stat
+sleep 2
+stat
+sleep 3
+stat
