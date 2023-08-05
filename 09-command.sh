@@ -1,7 +1,7 @@
-sample (){
-    echo hai from sample function
-    echo sample function is completed
+#/bin/bash
+stat(){
+    echo "Number of sessions are opened $(who | wc -l)"
+    echo "Today date is $(date +%F)"
+
 }
-sample 
-echo sample call is completed
-sample
+stat
