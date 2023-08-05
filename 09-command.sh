@@ -1,6 +1,7 @@
-f() {
-   > echo chinna
-   > echo function f is started
-   > echo function f is completed
-   > echo bye
+sample (){
+    echo hai from sample function
+    echo sample function is completed
 }
+sample 
+echo sample call is completed
+sample
