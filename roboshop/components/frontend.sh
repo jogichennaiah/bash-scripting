@@ -5,6 +5,7 @@ echo -e "\e[32m script is executed by the root user or with a sudo privilage \e[
 exit 1
 fi
 echo -e "\e[34m configuring frontend.......! \e[0m"
+echo "installing  frontend : "
 yum install nginx -y  &>> /tmp/frontend.log
 
 #validate the user who is running the script is a root user or not
