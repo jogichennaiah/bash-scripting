@@ -4,7 +4,7 @@ if [ $USER_ID -ne 0 ] ; then
 echo -e "\e[32m script is executed by the root user or with a sudo privilage \e[0m \n \t Example : sudo bash wrapper.sh frontend"
 exit 1
 fi
-echo "configuring frontend"
+echo -e "\e[34m configuring frontend.......! \e[0m"
 yum install nginx -y  &>> /tmp/frontend.log
 
 #validate the user who is running the script is a root user or not
