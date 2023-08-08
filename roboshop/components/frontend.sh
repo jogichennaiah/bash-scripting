@@ -8,6 +8,12 @@ echo -e "\e[34m configuring frontend.......! \e[0m"
 echo "installing  frontend : "
 yum install nginx -y  &>> /tmp/frontend.log
 
+if [ $? -eq 0 ]; then
+echo -e "\e[32m success \e[0m"
+else 
+  echo -e "\e[31m failure \e[0m"
+  fi
+
 #validate the user who is running the script is a root user or not
 
 # I want to ensure , that the SCRIPT SHOULD FAIL the user who run the script is not a root user
