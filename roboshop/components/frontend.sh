@@ -29,6 +29,14 @@ curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend
 
 stat $?
 
+echo -n "clean up of frontend :"
+cd /usr/share/nginx/html
+rm -rf *    &>> /tmp/frontend.log
+stat $?
+echo -n "extracting the frontend :"
+unzip /tmp/frontend.zip
+stat $?
+
 #validate the user who is running the script is a root user or not
 
 # I want to ensure , that the SCRIPT SHOULD FAIL the user who run the script is not a root user
@@ -43,7 +51,8 @@ stat $?
 
 # cd /usr/share/nginx/html
 # rm -rf *
-# unzip /tmp/frontend.zip
+# 
+
 # mv frontend-main/* .
 # mv static/* .
 # rm -rf frontend-main README.md
