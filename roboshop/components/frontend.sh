@@ -5,36 +5,29 @@ echo -e "\e[32m script is executed by the root user or with a sudo privilage \e[
 exit 1
 
 fi
-
+stat() {
+if [ $? -eq 0 ]; then
+echo -e "\e[32m success \e[0m"
+else 
+  echo -e "\e[31m failure \e[0m"
+  fi
+}
 
 echo -e "\e[34m configuring frontend.......! \e[0m"
 echo -n "installing  frontend :"
 yum install nginx -y  &>> /tmp/frontend.log
+stat $?
 
-if [ $? -eq 0 ]; then
-echo -e "\e[32m success \e[0m"
-else 
-  echo -e "\e[31m failure \e[0m"
-  fi
-
-echo -n "Starting nginx"
+echo -n "Starting nginx :"
 systemctl enable nginx  &>> /tmp/frontend.log
 
 systemctl start nginx   &>> /tmp/frontend.log
+stat $?
 
-if [ $? -eq 0 ]; then
-echo -e "\e[32m success \e[0m"
-else 
-  echo -e "\e[31m failure \e[0m"
-  fi
- echo -n "Downloading the frontend components"
+ echo -n "Downloading the frontend components :"
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 
-if [ $? -eq 0 ]; then
-echo -e "\e[32m success \e[0m"
-else 
-  echo -e "\e[31m failure \e[0m"
-  fi
+stat $?
 
 #validate the user who is running the script is a root user or not
 
