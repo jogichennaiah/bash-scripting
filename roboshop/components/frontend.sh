@@ -33,9 +33,24 @@ echo -n "clean up of frontend :"
 cd /usr/share/nginx/html
 rm -rf *    &>> /tmp/frontend.log
 stat $?
+
 echo -n "extracting the frontend :"
 unzip /tmp/frontend.zip  &>> /tmp/frontend.log
 stat $?
+ 
+echo -n "sorting the frontend files :"
+ mv frontend-main/* .
+ mv static/* .
+ rm -rf frontend-main README.md  &>> /tmp/frontend.log
+ mv localhost.conf /etc/nginx/default.d/roboshop.conf
+stat $?
+
+echo -n "Restarting  Frontend :"
+systemctl daemon-reload  &>> /tmp/frontend.log
+
+systemctl restart nginx   &>> /tmp/frontend.log
+stat $?
+
 
 #validate the user who is running the script is a root user or not
 
