@@ -3,7 +3,10 @@ USER_ID=$(id -u)
 if [ $USER_ID -ne 0 ] ; then
 echo -e "\e[32m script is executed by the root user or with a sudo privilage \e[0m \n \t Example : sudo bash wrapper.sh frontend"
 exit 1
+
 fi
+
+
 echo -e "\e[34m configuring frontend.......! \e[0m"
 echo -n "installing  frontend :"
 yum install nginx -y  &>> /tmp/frontend.log
@@ -13,6 +16,18 @@ echo -e "\e[32m success \e[0m"
 else 
   echo -e "\e[31m failure \e[0m"
   fi
+
+echo -n "Starting nginx"
+systemctl enable nginx  &>> /tmp/frontend.log
+
+systemctl start nginx   &>> /tmp/frontend.log
+
+if [ $? -eq 0 ]; then
+echo -e "\e[32m success \e[0m"
+else 
+  echo -e "\e[31m failure \e[0m"
+  fi
+
 
 #validate the user who is running the script is a root user or not
 
