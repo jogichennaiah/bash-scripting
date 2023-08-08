@@ -34,7 +34,7 @@ cd /usr/share/nginx/html
 rm -rf *    &>> /tmp/frontend.log
 stat $?
 echo -n "extracting the frontend :"
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip  &>> /tmp/frontend.log
 stat $?
 
 #validate the user who is running the script is a root user or not
