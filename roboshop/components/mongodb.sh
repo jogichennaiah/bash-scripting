@@ -36,11 +36,21 @@ systemctl start mongod
 systemctl restart mongod
 stat $?
 
-# curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
+echo -n "Downloading the ${COMPONENT} schema :"
+curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
+stat $?
+ 
+ echo -n "Extracting the ${COMPONENT} schema :"
+ cd /tmp
+ unzip ${COMPONENT}.zip   &>> ${LOGFILE}
+ STAT $?
+  
+echo -n "Injecting the ${COMPONENT} schema :"
+cd ${COMPONENT}-main
+mongo < catalogue.js
+mongo < users.js
+stat $?
 
-# cd /tmp
-# unzip mongodb.zip
-# cd mongodb-main
-# mongo < catalogue.js
-# mongo < users.js
+echo -e "\e[32m ]
+ 
 
