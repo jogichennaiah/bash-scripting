@@ -1,6 +1,6 @@
 #!/bin/bash
 USER_ID=$(id -u)
-COMPONENT=$frontend
+COMPONENT=$1
 LOGFILE="/tmp/${COMPONENT}.log"
 
 if [ $USER_ID -ne 0 ] ; then
