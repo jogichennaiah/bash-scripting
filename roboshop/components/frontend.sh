@@ -18,13 +18,13 @@ else
 
 echo -e "\e[34m configuring ${COMPONENT}.......! \e[0m"
 echo -n "installing  ${COMPONENT} :"
-yum install nginx -y  ${LOGFILE}
+yum install nginx -y  &>> ${LOGFILE}
 stat $?
 
 echo -n "Starting nginx :"
-systemctl enable nginx  ${LOGFILE}
+systemctl enable nginx &>> ${LOGFILE}
 
-systemctl start nginx   ${LOGFILE}
+systemctl start nginx  &>> ${LOGFILE}
 stat $?
 
  echo -n "Downloading the ${COMPONENT} components :"
@@ -34,11 +34,11 @@ stat $?
 
 echo -n "clean up of ${COMPONENT} :"
 cd /usr/share/nginx/html
-rm -rf *    ${LOGFILE}
+rm -rf *   &>> ${LOGFILE}
 stat $?
 
 echo -n "extracting the ${COMPONENT} :"
-unzip /tmp/frontend.zip ${LOGFILE}
+unzip /tmp/frontend.zip  &>> ${LOGFILE}
  mv ${COMPONENT}-main/* .
  mv static/* .
  rm -rf ${COMPONENT}-main README.md  &>> ${LOGFILE}
