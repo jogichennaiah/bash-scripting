@@ -18,7 +18,7 @@ else
   fi
 }
 echo -e "\e[34m configuring ${COMPONENT}.......! \e[0m"
-echo -e "configuring ${COMPONENT} repo"
+echo -e  -n "configuring ${COMPONENT} repo"
 curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/mongo.repo
 stat $?
 
