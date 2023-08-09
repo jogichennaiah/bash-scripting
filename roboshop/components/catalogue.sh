@@ -26,7 +26,7 @@ stat $?
 
 echo -n "Creating application user account :"
 useradd roboshop
-stat c$?
+stat $?
 
 
 
