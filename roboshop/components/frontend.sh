@@ -28,7 +28,7 @@ systemctl start nginx   ${LOGFILE}
 stat $?
 
  echo -n "Downloading the ${COMPONENT} components :"
-curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
+curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
 
 stat $?
 
@@ -38,7 +38,7 @@ rm -rf *    ${LOGFILE}
 stat $?
 
 echo -n "extracting the ${COMPONENT} :"
-unzip /tmp/frontend.zip ${LOGFILE}
+unzip /tmp/${COMPONENT}.zip ${LOGFILE}
 stat $?
  
 echo -n "sorting the ${COMPONENT} files :"
