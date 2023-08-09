@@ -1,7 +1,10 @@
 #!/bin/bash
 USER_ID=$(id -u)
+COMPONENT=$frontend
+LOGFILE="/tmp/${COMPONENT}.log"
+
 if [ $USER_ID -ne 0 ] ; then
-echo -e "\e[32m script is executed by the root user or with a sudo privilage \e[0m \n \t Example : sudo bash wrapper.sh frontend"
+echo -e "\e[32m script is executed by the root user or with a sudo privilage \e[0m \n \t Example : sudo bash wrapper.sh ${COMPONENT}"
 exit 1
 
 fi
@@ -13,62 +16,41 @@ else
   fi
 }
 
-echo -e "\e[34m configuring frontend.......! \e[0m"
-echo -n "installing  frontend :"
-yum install nginx -y  &>> /tmp/frontend.log
+echo -e "\e[34m configuring ${COMPONENT}.......! \e[0m"
+echo -n "installing  ${COMPONENT} :"
+yum install nginx -y  ${LOGFILE}
 stat $?
 
 echo -n "Starting nginx :"
-systemctl enable nginx  &>> /tmp/frontend.log
+systemctl enable nginx  ${LOGFILE}
 
-systemctl start nginx   &>> /tmp/frontend.log
+systemctl start nginx   ${LOGFILE}
 stat $?
 
- echo -n "Downloading the frontend components :"
-curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
+ echo -n "Downloading the ${COMPONENT} components :"
+curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
 
 stat $?
 
-echo -n "clean up of frontend :"
+echo -n "clean up of ${COMPONENT} :"
 cd /usr/share/nginx/html
-rm -rf *    &>> /tmp/frontend.log
+rm -rf *    ${LOGFILE}
 stat $?
 
-echo -n "extracting the frontend :"
-unzip /tmp/frontend.zip  &>> /tmp/frontend.log
+echo -n "extracting the ${COMPONENT} :"
+unzip /tmp/frontend.zip ${LOGFILE}
 stat $?
  
-echo -n "sorting the frontend files :"
- mv frontend-main/* .
+echo -n "sorting the ${COMPONENT} files :"
+ mv ${COMPONENT}-main/* .
  mv static/* .
- rm -rf frontend-main README.md  &>> /tmp/frontend.log
+ rm -rf ${COMPONENT}-main README.md  &>> ${LOGFILE}
  mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
-echo -n "Restarting  Frontend :"
-systemctl daemon-reload  &>> /tmp/frontend.log
-
-systemctl restart nginx   &>> /tmp/frontend.log
+echo -n "Restarting  ${COMPONENT} :"
+systemctl daemon-reload  &>> ${LOGFILE}
+systemctl restart nginx   &>> ${LOGFILE}
 stat $?
 
 
-#validate the user who is running the script is a root user or not
-
-# I want to ensure , that the SCRIPT SHOULD FAIL the user who run the script is not a root user
-# rather executing the commands and failing
- 
-
-# yum install nginx -y
-# systemctl enable nginx
-# systemctl start nginx
-
-# curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
-
-# cd /usr/share/nginx/html
-# rm -rf *
-# 
-
-# mv frontend-main/* .
-# mv static/* .
-# rm -rf frontend-main README.md
-# mv localhost.conf /etc/nginx/default.d/roboshop.conf
