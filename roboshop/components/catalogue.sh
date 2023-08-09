@@ -24,10 +24,12 @@ echo -n "Installing ${COMPONENT} NodeJs :"
 yum install  nodejs -y   &>> ${LOGFILE}
 stat $? 
 
+id ${APPUSER}
+if [ $? -ne 0 ] ;then 
 echo -n "Creating application user account :"
 useradd roboshop  &>> ${LOGFILE}
 stat $?
-
+fi
 
 
 
