@@ -38,8 +38,10 @@ stat $?
 echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory"
  cd /home/${APPUSER}/
  rm -rf ${COMPONENT}  &>> ${LOGFILE}
- unzip /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
+ unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
 stat $?
+
+
  
 
 
@@ -47,12 +49,6 @@ stat $?
 
 
 
-# curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
-# yum install nodejs -y
-# useradd roboshop
-#$ curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
-#$ cd /home/roboshop
-#$ unzip /tmp/catalogue.zip
 #$ mv catalogue-main catalogue
 #$ cd /home/roboshop/catalogue
 #$ npm install
