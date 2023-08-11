@@ -24,17 +24,17 @@ echo -n "Installing ${COMPONENT} NodeJs :"
 yum install  nodejs -y   &>> ${LOGFILE}
 stat $? 
 
-id ${APPUSER}  &>> ${LOGFILE}
+#id ${APPUSER}  &>> ${LOGFILE}
 
-if [ $? -ne 0 ] ;then 
+#if [ $? -ne 0 ] ;then 
 echo -n "Creating application user account :"
 useradd roboshop  
 stat $?
-fi
+#fi
 
-echo -n "Downloading the ${COMPONENT} :"
-curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
-stat $?
+#echo -n "Downloading the ${COMPONENT} :"
+#curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
+#stat $?
  
 #echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory"
  #cd /home/${APPUSER}/
