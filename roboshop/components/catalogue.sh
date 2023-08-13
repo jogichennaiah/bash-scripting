@@ -31,12 +31,12 @@ useradd roboshop
 stat $?
 fi
 
-#echo -n "Downloading the ${COMPONENT} :"
-#curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
-#stat $?
+echo -n "Downloading the ${COMPONENT} :"
+curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
+stat $?
 
-#echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
-#cd /home/${APPUSER}/
-#rm -rf ${COMPONENT}    &>> ${LOGFILE}
-#unzip -o /tmp/${COMOPONENT}.zip    &>> ${LOGFILE}
-#stat $?
+echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
+cd /home/${APPUSER}/
+rm -rf ${COMPONENT}    &>> ${LOGFILE}
+unzip -o /tmp/${COMOPONENT}.zip    &>> ${LOGFILE}
+stat $?
