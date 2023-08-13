@@ -36,7 +36,7 @@ curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalog
 stat $?
 
 echo -n "Copying the ${COMPONENT} home directory"
-cd /home/${APPUSER}
+cd /home/${APPUSER}/
 rm -rf ${COMPONENT}    &>> ${LOGFILE}
 unzip -o /tmp/${COMOPONENT}.zip    &>> ${LOGFILE}
 stat $?
