@@ -1,7 +1,7 @@
 #!/bin/bash/
 USER_ID=$(id -u)
 COMPONENT=catalogue
-LOGFILE="/tmp/${COMPONENT}.log"
+LOGFILE=/tmp/${COMPONENT}.log
 
 if [ $USER_ID -ne 0 ] ; then
 echo -e "\e[32m script is executed by the root user or with a sudo privilage \e[0m \n \t Example : sudo bash wrapper.sh ${COMPONENT}"
@@ -39,5 +39,5 @@ stat $?
 echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
 cd /home/${APPUSER}/
 rm -rf ${COMPONENT}    &>> ${LOGFILE}
-unzip -o /tmp/${COMPONENT}.zip    &>> ${LOGFILE}
+unzip -o /tmp/catalogue.zip    &>> ${LOGFILE}
 stat $?
