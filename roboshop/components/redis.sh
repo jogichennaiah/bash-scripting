@@ -34,7 +34,7 @@ stat $?
 echo -n "Starting the ${COMPONENT} :"
 systemctl daemon-reload    &>> ${LOGFILE}
 systemctl enable ${COMPONENT}    &>> ${LOGFILE}
-systemctl start ${COMPONENT}     &>> ${LOGFILE}
+systemctl restart ${COMPONENT}     &>> ${LOGFILE}
 stat $?
 
 echo -e "\e[32m ${COMPONENT} installation is completed \e[0m \n" 
