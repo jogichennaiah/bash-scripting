@@ -46,9 +46,9 @@ stat $?
 echo -n "Copying the ${COMPONENT} to ${APPUSER} :"
 cd /home/${APPUSER}/
 rm -rf ${COMPONENT}  &>> ${LOGFILE}
-unzip -o /tmp/${components}.zip    &>> ${LOGFILE}
+unzip -o /tmp/${COMPONENT}.zip    &>> ${LOGFILE}
  stat $?
- 
+
  #mv catalogue-main catalogue
  #cd /home/roboshop/catalogue
  #npm install
