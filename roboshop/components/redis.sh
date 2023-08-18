@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 
 
 USER_ID=$(id -u)
@@ -20,7 +19,7 @@ else
 }
 echo -e "\e[34m configuring ${COMPONENT}.......! \e[0m"
 echo -e  -n "configuring ${COMPONENT} repo :"
-curl -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/redis.repo -o /etc/yum.repos.d/${COMPONENT}.repo  &>> ${LOGFILE}
+curl -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/${COMPONENT}.repo -o /etc/yum.repos.d/${COMPONENT}.repo
 stat $?
 
 echo -n "Installing ${COMPONENT} :"
@@ -29,14 +28,12 @@ stat $?
 
 echo -n "Enabling the ${COMPONENT} visibility:"
 sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}.conf
-sed -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf
-
 stat $?
  
 echo -n "Starting the ${COMPONENT} :"
-systemctl daemon-reload    &>> ${LOGFILE}
-systemctl enable ${COMPONENT}    &>> ${LOGFILE}
-systemctl restart ${COMPONENT}     &>> ${LOGFILE}
+systemctl daemon-reload      &>> ${LOGFILE}
+systemctl enable ${COMPONENT}       &>> ${LOGFILE}
+systemctl start ${COMPONENT}     &>> ${LOGFILE}
 stat $?
 
 echo -e "\e[32m ${COMPONENT} installation is completed \e[0m \n" 
