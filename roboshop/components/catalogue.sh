@@ -25,12 +25,13 @@ else
 echo -e "\e[34m configuring ${COMPONENT}.......! \e[0m"
 
 echo -e  -n "configuring ${COMPONENT} repo :"
-curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -    & >> ${LOGFILE}
+curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -    &>> ${LOGFILE}
 stat $?
 
 echo -n "Installing Node Js :"
 yum install nodejs -y &>> ${LOGFILE}
 stat $? 
+
 
 echo -n "Creating Application user account :"
 useradd roboshop
