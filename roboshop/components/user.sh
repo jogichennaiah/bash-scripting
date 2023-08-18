@@ -1,8 +1,14 @@
+
+
+
 #!/bin/bash
+
+
 USER_ID=$(id -u)
 COMPONENT=user
-LOGFILE=/tmp/${COMPONENT}.log
+LOGFILE="/tmp/${COMPONENT}.log"
 APPUSER=roboshop
+
 
 if [ $USER_ID -ne 0 ] ; then
 echo -e "\e[32m script is executed by the root user or with a sudo privilage \e[0m \n \t Example : sudo bash wrapper.sh ${COMPONENT}"
@@ -17,19 +23,19 @@ else
   fi
 }
 echo -e "\e[34m configuring ${COMPONENT}.......! \e[0m"
+
 echo -e  -n "configuring ${COMPONENT} repo :"
 curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -    &>> ${LOGFILE}
 stat $?
 
 echo -n "Installing Node Js :"
-yum install nodejs -y  &>> ${LOGFILE}
-stat $?
+yum install nodejs -y &>> ${LOGFILE}
+stat $? 
 
 id ${APPUSER}  &>> ${LOGFILE}
-
 if [ $? -ne 0 ] ; then
-echo -n "Creating Application user account :"
-useradd ${APPUSER}
+   echo -n "Creating Application user account :"
+  useradd roboshop  
 stat $?
 fi
 
@@ -37,11 +43,11 @@ echo -n "Downloading the ${COMPONENT} :"
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
 stat $?
 
-echo -n "Copying the ${COMPONENT} to ${APPUSER} home directory :"
+echo -n "Copying the ${COMPONENT} to ${APPUSER} :"
 cd /home/${APPUSER}/
-rm -rf ${COMPONENT}    &>> ${LOGFILE}
+rm -rf ${COMPONENT}  &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip    &>> ${LOGFILE}
-stat $?
+ stat $?
 
 echo -n "Changing the ownership :"
 mv ${COMPONENT}-main ${COMPONENT}
@@ -50,20 +56,27 @@ stat $?
 
 echo -n "Generating the ${COMPONENT} artifacts :"
 cd /home/${APPUSER}/${COMPONENT}/
-npm install   &>> ${LOGFILE}
+npm install    &>> ${LOGFILE}
 stat $?
 
-echo -n "Updating the ${COMPONENT} system file :"
-sed -ie 's/REDIS_DNSNAME/redis.roboshop.in/' /home/${APPUSER}/${COMPONENT}/systemd.service -e 's/MONGO_DNSNAME/mongodb.roboshop.in/' /home/${APPUSER}/${COMPONENT}/systemd.service
-
+echo -n "Configuring the ${COMPONENT} system file :"
+sed -ie 's/REDIS_ENDPOINT/redis.roboshop.in/' /home/${APPUSER}/${COMPONENT}/systemd.service -e 's/MONGO_ENDPOINT/mongodb.roboshop.in/' /home/${APPUSER}/${COMPONENT}/systemd.service
 mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
- 
 
 echo -n "Starting the ${COMPONENT} service :"
-systemctl daemon-reload    &>> ${LOGFILE}
-systemctl enable ${COMPONENT}  &>> ${LOGFILE}
-systemctl restart ${COMPONENT}   &>> ${LOGFILE}
+systemctl daemon-reload &>> ${LOGFILE}
+systemctl enable ${COMPONENT} &>> ${LOGFILE}
+systemctl restart ${COMPONENT} &>> ${LOGFILE}
 stat $?
 
-echo -e "\n \e[35m ${COMPONENT} Installation is completed \e[0m \n"
+echo -e "\e[35m ${COMPONENT} Installation is Completed \e[0m \n"
+
+
+
+
+
+
+
+
+
