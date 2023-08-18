@@ -35,42 +35,29 @@ stat $?
 id ${APPUSER}  &>> ${LOGFILE}
 if [ $? -ne 0 ] ; then
    echo -n "Creating Application user account :"
-  useradd roboshop  &>> ${LOGFILE}
+  useradd roboshop  
 stat $?
 fi
 
+echo -n "Downloading the ${COMPONENT} :"
+curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
+stat $?
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
-
-
-
-
-
-# yum install nodejs -y
-# useradd roboshop
-# curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/catalogue/archive/main.zip"
- #cd /home/roboshop
- #unzip /tmp/catalogue.zip
+echo -n "Copying the ${COMPONENT} to ${APPUSER} :"
+cd /home/${APPUSER}/
+rm -rf ${COMPONENT}  &>> ${LOGFILE}
+unzip -o /tmp/${components}.zip    &>> ${LOGFILE}
+ stat $?
+ 
  #mv catalogue-main catalogue
  #cd /home/roboshop/catalogue
  #npm install
-# mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
-# systemctl daemon-reload
-# systemctl start catalogue
-# systemctl enable catalogue
-# systemctl status catalogue -l
+
+
+
+
+
+
+
+
 
