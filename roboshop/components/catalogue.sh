@@ -32,10 +32,13 @@ echo -n "Installing Node Js :"
 yum install nodejs -y &>> ${LOGFILE}
 stat $? 
 
+id ${APPUSER}
+if [ $? -eq 0 ] ; then
+   echo -n "Creating Application user account :"
 
-echo -n "Creating Application user account :"
-useradd roboshop
+   useradd roboshop
 stat $?
+fi
 
 
 
