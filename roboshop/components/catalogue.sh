@@ -54,7 +54,8 @@ mv catalogue-main ${COMPONENT}
 chown -R ${APPUSER}:${APPUSER} /home/${APPUSER}/${COMPONENT}/
 stat $?
 
-#cd /home/roboshop/catalogue
+echo -n "Generating the ${COMPONENT} artifacts :"
+cd /home/${APPUSER}/${COMPONENT}
  #npm install
 
 
