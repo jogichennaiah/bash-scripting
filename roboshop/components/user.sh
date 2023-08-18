@@ -53,17 +53,17 @@ cd /home/${APPUSER}/${COMPONENT}/
 npm install   &>> ${LOGFILE}
 stat $?
 
-echo -n "Updating the ${COMPONENT} system file :"
-sed -ie 's/REDIS_DNSNAME/redis.roboshop.in/' /home/${APPUSER}/${COMPONENT}/systemd.service
-sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.in/' /home/${APPUSER}/${COMPONENT}/systemd.service
-mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
-stat $?
+#echo -n "Updating the ${COMPONENT} system file :"
+#sed -ie 's/REDIS_DNSNAME/redis.roboshop.in/' /home/${APPUSER}/${COMPONENT}/systemd.service
+#sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.in/' /home/${APPUSER}/${COMPONENT}/systemd.service
+#mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+#stat $?
  
 
-echo -n "Starting the ${COMPONENT} service :"
-systemctl daemon-reload    &>> ${LOGFILE}
-systemctl enable ${COMPONENT}  &>> ${LOGFILE}
-systemctl restart ${COMPONENT}   &>> ${LOGFILE}
-stat $?
+#echo -n "Starting the ${COMPONENT} service :"
+#systemctl daemon-reload    &>> ${LOGFILE}
+#systemctl enable ${COMPONENT}  &>> ${LOGFILE}
+#systemctl restart ${COMPONENT}   &>> ${LOGFILE}
+#stat $?
 
-echo -e "\n \e[35m ${COMPONENT} Installation is completed \e[0m \n"
+#echo -e "\n \e[35m ${COMPONENT} Installation is completed \e[0m \n"
