@@ -36,6 +36,6 @@ systemctl enable ${COMPONENT}       &>> ${LOGFILE}
 systemctl start ${COMPONENT}     &>> ${LOGFILE}
 stat $?
 
-echo -e "\e[32m ${COMPONENT} installation is completed \e[0m \n" 
+echo -e "\e[35m ${COMPONENT} installation is completed \e[0m \n" 
  
 
