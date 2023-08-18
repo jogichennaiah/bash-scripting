@@ -36,7 +36,7 @@ id ${APPUSER}  &>> ${LOGFILE}
 if [ $? -eq 0 ] ; then
    echo -n "Creating Application user account :"
 
-   useradd roboshop
+   useradd roboshop  &>> ${LOGFILE}
 stat $?
 fi
 
