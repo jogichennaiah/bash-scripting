@@ -46,7 +46,7 @@ unzip -o /tmp/${COMPONENT}.zip
 stat $?
 
 echo -n "Injecting the schema :"
-cd /tmp/{COMPONENT}-main
+cd /tmp/${COMPONENT}-main
 ls -ltr  ${COMPONENT}-main
 mysql -u root -pRoboShop@1 <shipping.sql  &>> ${LOGFILE}
 stat $?
