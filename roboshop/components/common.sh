@@ -79,9 +79,9 @@ stat $?
 CREATE_USER    #calls CREATE_USER function that creates user account
 DOWNLOAD_AND_EXTRACT # Download and extract the component
 
-}
-
 echo -n "Generating the ${COMPONENT} artifacts :"
 cd /home/${APPUSER}/${COMPONENT}/
 npm install    &>> ${LOGFILE}
 stat $?
+
+}
