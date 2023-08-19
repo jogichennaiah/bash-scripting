@@ -40,5 +40,10 @@ if [ $? -eq 0 ]; then
     stat $?
 fi 
 
-
+DOWNLOAD    # Downloading and extracts mysql schema
+cd ${COMPONENT}-main
+mysql -u root -pRoboShop@1 <shipping.sql  &>> ${LOGFILE}
+stat $?
+ 
+echo -e "\e[35m ${COMPONENT} Installation is completed \e[0m \n"
 
