@@ -41,7 +41,8 @@ if [ $? -eq 0 ]; then
 fi 
 
 DOWNLOAD    # Downloading and extracts mysql schema
-cd /tmp/${COMPONENT}-main
+
+cd /tmp${COMPONENT}-main
 mysql -u root -pRoboShop@1 <shipping.sql  &>> ${LOGFILE}
 stat $?
  

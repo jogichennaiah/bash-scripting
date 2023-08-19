@@ -86,7 +86,7 @@ yum install nodejs -y &>> ${LOGFILE}
 stat $? 
 
 CREATE_USER    #calls CREATE_USER function that creates user account
-DOWNLOAD # Download and extract the component
+EXTRACT # Download and extract the component
 
 echo -n "Generating the ${COMPONENT} artifacts :"
 cd /home/${APPUSER}/${COMPONENT}/
