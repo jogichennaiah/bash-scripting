@@ -40,7 +40,10 @@ if [ $? -eq 0 ]; then
     stat $?
 fi 
 
-DOWNLOAD    # Downloading and extracts mysql schema
+DOWNLOAD    # Downloads
+echo -n "Extracting the schema :"
+unzip -o /tmp/${COMPONENT}.zip
+stat $?
 
 cd /tmp${COMPONENT}-main
 mysql -u root -pRoboShop@1 <shipping.sql  &>> ${LOGFILE}
