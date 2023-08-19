@@ -51,7 +51,7 @@ stat $?
 
 CONFIG_SVC() {
 echo -n "Configuring the ${COMPONENT} system file :"
-sed -ie 's/MONGO_DNSNAME/mongodb.roboshop.in/' /home/${APPUSER}/${COMPONENT}/systemd.service
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.in/' -e 's/REDIS_ENDPOINT/redis.roboshop.in/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.in/' /home/${APPUSER}/${COMPONENT}/systemd.service
 mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
 
