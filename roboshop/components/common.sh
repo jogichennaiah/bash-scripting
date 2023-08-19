@@ -40,7 +40,7 @@ stat $?
 cd /home/${APPUSER}/
 rm -rf ${COMPONENT}  &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip    &>> ${LOGFILE}
- stat $?
+stat $?
 
 echo -n "Changing the ownership :"
 mv ${COMPONENT}-main ${COMPONENT}
