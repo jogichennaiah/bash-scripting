@@ -5,7 +5,7 @@
 
 
 USER_ID=$(id -u)
-COMPONENT=user
+COMPONENT=cart
 LOGFILE="/tmp/${COMPONENT}.log"
 APPUSER=roboshop
 
