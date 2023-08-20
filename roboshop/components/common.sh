@@ -60,7 +60,7 @@ stat $?
 
 CONFIG_SVC() {
 echo -n "Configuring the ${COMPONENT} system file :"
-sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.in/'  -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.in/' -e 's/MONGO_DNSNAME/mongodb.roboshop.in/' -e 's/REDIS_ENDPOINT/redis.roboshop.in/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.in/' /home/${APPUSER}/${COMPONENT}/systemd.service
+sed -i -e 's/CARTENDPOINT/cart.roboshop.in/' -e 's/DBHOST/mysql.roboshop.in/'  -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.in/' -e 's/MONGO_DNSNAME/mongodb.roboshop.in/' -e 's/REDIS_ENDPOINT/redis.roboshop.in/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.in/' /home/${APPUSER}/${COMPONENT}/systemd.service
 mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
 
@@ -70,12 +70,14 @@ systemctl enable ${COMPONENT} &>> ${LOGFILE}
 systemctl restart ${COMPONENT} &>> ${LOGFILE}
 stat $?
 
+
+
 }
 
 
 #Declaring the NoDEJS function
 NODEJS() {
-    echo -e "\e[34m configuring ${COMPONENT}.......! \e[0m"
+    echo -e "\e[34m configuring ${COMPONENT}.......! \e[0m \n"
 
 echo -e  -n "configuring ${COMPONENT} repo :"
 curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -    &>> ${LOGFILE}
@@ -92,5 +94,31 @@ echo -n "Generating the ${COMPONENT} artifacts :"
 cd /home/${APPUSER}/${COMPONENT}/
 npm install    &>> ${LOGFILE}
 stat $?
+CONFIG_SVC
 
+}
+
+MVN_PACKAGE() {
+echo -n "Generating the ${COMPONENT} artifacts :"
+cd /home/${APPUSER}/${COMPONENT}/
+mvn clean package  & >> ${LOGFILE}
+mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar 
+}
+
+
+
+
+
+
+JAVA() {
+ echo -e "\e[34m configuring ${COMPONENT}.......! \e[0m \n"
+ echo -n "Installing moven :"
+ yum install maven -y  &>> ${LOGFILE}
+ stat $?
+
+ CREATE_USER             #Calls the CREATE_USER function that crates user account
+ DOWNLOAD_AND_EXTRACT    # Downloads and extracts the components
+ 
+ MVN_PACKAGE
+ CONFIG_SVC
 }
