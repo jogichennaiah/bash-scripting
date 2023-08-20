@@ -11,6 +11,7 @@ echo -n "Configuring ${COMPONENT} repositories :"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash   &>> ${LOGFILE}
 
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash   &>> ${LOGFILE}
+stat $?
 
 echo -n "Installing ${COMPONENT} :"
 yum install rabbitmq-server -y  &>> ${LOGFILE}
