@@ -112,3 +112,17 @@ JAVA() {
  MVN_PACKAGE
  CONFIG_SVC
 }
+
+PYTHON() {
+echo -e "\e[34m configuring ${COMPONENT}.......! \e[0m \n"
+
+echo -n "Installing Python :"
+yum install python36 gcc python3-devel -y  &>> ${LOGFILE}
+stat $?
+
+ CREATE_USER             #Calls the CREATE_USER function that crates user account
+ DOWNLOAD_AND_EXTRACT    # Downloads and extracts the components
+
+ pip3 install -r requirements.txt  &>> ${COMPONENT}
+
+}
