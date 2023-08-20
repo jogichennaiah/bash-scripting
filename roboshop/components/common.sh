@@ -31,20 +31,10 @@ fi
 
 }
 
-DOWNLOAD() {
+DOWNLOAD_AND_EXTRACT() {
   echo -n "Downloading the ${COMPONENT} :"
   curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
   stat $?
-}
-
-
-EXTRACT() {
-
-  DOWNLOAD   # Downloads the components
-
-echo -n "Downloading the ${COMPONENT} :"
-curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
-stat $?
 
 cd /home/${APPUSER}/
 rm -rf ${COMPONENT}  &>> ${LOGFILE}
@@ -88,7 +78,7 @@ yum install nodejs -y &>> ${LOGFILE}
 stat $? 
 
 CREATE_USER    #calls CREATE_USER function that creates user account
-EXTRACT # Download and extract the component
+DOWNLOAD_AND_EXTRACT # Download and extract the component
 
 echo -n "Generating the ${COMPONENT} artifacts :"
 cd /home/${APPUSER}/${COMPONENT}/
@@ -104,10 +94,6 @@ cd /home/${APPUSER}/${COMPONENT}/
 mvn clean package  & >> ${LOGFILE}
 mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar 
 }
-
-
-
-
 
 
 JAVA() {
