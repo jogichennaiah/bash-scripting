@@ -55,4 +55,6 @@ systemctl daemon-reload  &>> ${LOGFILE}
 systemctl restart nginx   &>> ${LOGFILE}
 stat $?
 
+echo -e "\e[35m ${COMPONENT} Installation is completed \e[0m \n"
+
 
