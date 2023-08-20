@@ -45,6 +45,11 @@ unzip /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
  mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
+echo -n "updating the Backend Component in the reverse proxy file :"
+for component is catalogue user cart ;do 
+   sed -i -e "/${component}/s/localhost/${component}.roboshop.in/" /etc/nginx/default.d/roboshop.conf
+   
+
 echo -n "Restarting  ${COMPONENT} :"
 systemctl daemon-reload  &>> ${LOGFILE}
 systemctl restart nginx   &>> ${LOGFILE}
