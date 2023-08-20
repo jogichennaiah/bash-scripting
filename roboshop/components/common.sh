@@ -127,4 +127,13 @@ stat $?
  cd /home/${APPUSER}/${COMPONENT}
  pip3 install -r requirements.txt  &>> ${LOGFILE}
  stat $?
+
+ USERID=$(id -u roboshop)
+ GROUPID=$(id -u roboshop)
+
+ echo -n "Updating the uid and gid in the ${COMPONENT} in the file :"
+ sed -i -e "/^uid/ c uid=${USERID}" -e "/^gid/ c gid=${GROUPID} /home/${APPUSER}/${COMPONENT}/${COMPONENT}.ini
+
+   CONFIG_SVC
+
 }
