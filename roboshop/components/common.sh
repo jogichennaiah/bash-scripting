@@ -124,5 +124,5 @@ stat $?
  DOWNLOAD_AND_EXTRACT    # Downloads and extracts the components
 
  pip3 install -r requirements.txt  &>> ${COMPONENT}
-
+ stat $?
 }
