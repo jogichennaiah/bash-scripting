@@ -129,11 +129,12 @@ stat $?
  stat $?
 
  USERID=$(id -u roboshop)
- GROUPID=$(id -u roboshop)
+ GROUPID=$(id -g roboshop)
 
- echo -n "Updating the uid and gid in the ${COMPONENT} in the file :"
+ echo -n "Updating the uid and gid in the ${COMPONENT} in the file"
  sed -i -e "/^uid/ c uid=${USERID}" -e "/^gid/ c gid=${GROUPID} /home/${APPUSER}/${COMPONENT}/${COMPONENT}.ini
  stat $?
+
  CONFIG_SVC
 
 }
