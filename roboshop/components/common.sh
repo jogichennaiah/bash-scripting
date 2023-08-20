@@ -38,6 +38,7 @@ DOWNLOAD_AND_EXTRACT() {
 
 cd /home/${APPUSER}/
 rm -rf ${COMPONENT}  &>> ${LOGFILE}
+echo -n "Unzip the ${COMPONENT} :"
 unzip -o /tmp/${COMPONENT}.zip    &>> ${LOGFILE}
 stat $?
 
