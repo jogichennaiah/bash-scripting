@@ -123,6 +123,6 @@ stat $?
  CREATE_USER             #Calls the CREATE_USER function that crates user account
  DOWNLOAD_AND_EXTRACT    # Downloads and extracts the components
 
- pip3 install -r requirements.txt  &>> ${COMPONENT}
+ pip3 install -r requirements.txt  &>> ${LOGFILE}
  stat $?
 }
