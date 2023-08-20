@@ -31,8 +31,8 @@ stat $?
 fi
 
 echo -n "Configuring the permission :"
- rabbitmqctl set_user_tags roboshop administrator      
- rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"   
+ rabbitmqctl set_user_tags roboshop administrator      &>> ${LOGFILE}
+ rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"   &>> ${LOGFILE}
 stat $?
 
 echo -e "\e[35m ${COMPONENT} Installation is completed \e[0m \n"
