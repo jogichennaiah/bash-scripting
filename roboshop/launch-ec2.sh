@@ -11,7 +11,7 @@ if [ -z $1 ] || [ -z $2 ]  ; then
     exit 1
 fi 
 
-# AMI_ID="ami-0c1d144c8fdd8d690"
+#AMI_ID="ami-0c1d144c8fdd8d690"
 AMI_ID="$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7"| jq ".Images[].ImageId" | sed -e 's/"//g')" 
 SG_ID="$(aws ec2 describe-security-groups  --filters Name=group-name,Values=b55-allow-all-chinna | jq '.SecurityGroups[].GroupId' | sed -e 's/"//g')"       # b54-allow-all security group id
 
