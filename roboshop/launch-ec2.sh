@@ -1,5 +1,6 @@
 #!/bin/bash
 
+COMPONENT=$1
 AMI_ID="ami-0c1d144c8fdd8d690"
 INSTANCE_TYPE="t3.micro"
 SG_ID="sg-0c848594407d0f2a8"
