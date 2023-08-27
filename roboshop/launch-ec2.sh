@@ -8,9 +8,12 @@ if [ -z $1 ]; then
    exit 1
 fi
 
-AMI_ID="ami-0c1d144c8fdd8d690"
+AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7" | jq ".Images[].ImageId" | sed -e 's/"//g')
 INSTANCE_TYPE="t3.micro"
 SG_ID="sg-0c848594407d0f2a8"
+
+
+echo -e "***** Creating \e[35m ${COMPONENT} \e[32m Server Is In Progress ******
 PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --count 1 --instance-type ${INSTANCE_TYPE}  --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
 
 echo "Private Ip Address of the $COMPONENT is $PRIVATEIP"
