@@ -25,7 +25,7 @@ echo -e "Creating DNS Record of ${COMPONENT} :"
 sed -e "s/COMPONENT/${COMPONENT}/"  -e "s/IPADDRESS/${PRIVATEIP}/" route53.json  > /tmp/r53.json 
 
 aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONEID --change-batch file:///tmp/r53.json
-echo -e "Private Ip Address of the $COMPONENT is created and ready to use on ${COMPONENT}.roboshop.in"
+echo -e "\e[36m ***** Creating DNS Record for the $COMPONENT has completed ***** \e[0m \n\n"
 
 
 
