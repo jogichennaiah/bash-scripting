@@ -10,6 +10,7 @@ if [ -z $1 ]; then
    exit 1
 fi
 
+create_ec2(){
 AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7" | jq ".Images[].ImageId" | sed -e 's/"//g')
 SG_ID=$(aws ec2 describe-security-groups --filters Name=group-name,Values=b55-allow-all-chinna | jq '.SecurityGroups[].GroupId' | sed -e 's/"//g')
 
@@ -26,6 +27,19 @@ sed -e "s/COMPONENT/${COMPONENT}/"  -e "s/IPADDRESS/${PRIVATEIP}/" route53.json 
 
 aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONEID --change-batch file:///tmp/r53.json
 echo -e "\e[36m ***** Creating DNS Record for the $COMPONENT has completed ***** \e[0m \n\n"
+
+}
+
+if [ "$1"=="all" ]; then
+  for component in mongodb catalogue cart user shipping frontend payment mysql redis rabbitmq; do
+      COMPONENT=$COMPONENT 
+      create_ec2
+      done 
+
+else
+    
+       create_ec2
+fi
 
 
 
