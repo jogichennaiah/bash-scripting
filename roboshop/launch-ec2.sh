@@ -30,16 +30,13 @@ echo -e "\e[36m ***** Creating DNS Record for the $COMPONENT has completed *****
 
 }
 
-if [ "$1" == "all" ]; then
-  for component in mongodb catalogue cart user shipping frontend payment mysql redis rabbitmq; do
-      COMPONENT=$COMPONENT 
-      create_ec2
-   done 
+if [ "$1" == "all" ]; then 
 
-else
-    
-       create_ec2
-fi
+    for component in mongodb catalogue cart user shipping frontend payment mysql redis rabbitmg; do 
+        COMPONENT=$component 
+        create_ec2
+    done 
 
-
-
+else 
+        create_ec2 
+fi 
